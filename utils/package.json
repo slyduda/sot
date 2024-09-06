@@ -1,0 +1,17 @@
+{
+  "name": "@sot/utils",
+  "version": "1.0.0",
+  "private": false,
+  "author": "Sly Duda <me@slyduda.com> (https://slyduda.com/)",
+  "type": "module",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "tsc": "^2.0.4",
+    "typescript": "^5.5.4"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // You can adjust this depending on your target environment
+    "module": "ESNext", // Support for ESModules
+    "moduleResolution": "Node",
+    "outDir": "./dist", // Output directory for transpiled files
+    "declaration": true, // Generate .d.ts files
+    "esModuleInterop": true, // Better interop with CommonJS
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": ["src/**/*"], // Ensure your source files are included
+  "exclude": ["node_modules"]
+}

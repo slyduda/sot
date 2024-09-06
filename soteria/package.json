@@ -1,0 +1,43 @@
+{
+  "name": "@olympos/soteria",
+  "version": "0.1.0",
+  "private": false,
+  "author": "Sly Duda <me@slyduda.com> (https://slyduda.com/)",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/slyduda/soteria.git"
+  },
+  "description": "Reactive Finite State Machine mixins and helpers for programming reactive state logic.",
+  "license": "MIT",
+  "main": "dist",
+  "types": "dist/index.d.ts",
+  "files": [
+    "build",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "vitest",
+    "start": "tsx ./src/index.ts",
+    "bench": "vitest bench",
+    "build": "vite build"
+  },
+  "keywords": [
+    "state",
+    "state machine",
+    "finite state machine"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/node": "^22.5.4",
+    "vite-plugin-dts": "^4.1.0",
+    "vitest": "^2.0.5"
+  },
+  "dependencies": {
+    "@olympos/sot": "0.1.0",
+    "@sot/utils": "1.0.0",
+    "@vue-reactivity/watch": "^0.2.0",
+    "@vue/reactivity": "3.4.38"
+  }
+}
