@@ -21,7 +21,8 @@
     "test": "vitest",
     "start": "tsx ./src/index.ts",
     "bench": "vitest bench",
-    "build": "vite build"
+    "build": "vite build",
+    "build:watch": "vite build --watch"
   },
   "keywords": [
     "state",
@@ -29,7 +30,10 @@
     "finite state machine"
   ],
   "dependencies": {
-    "@sot/utils": "1.0.0"
+    "@olympos/sot": "0.1.0",
+    "@sot/utils": "1.0.0",
+    "@types/d3": "^7.4.3",
+    "dagre-d3-es": "^7.0.10"
   },
   "devDependencies": {
     "@rollup/plugin-terser": "^0.4.4",
