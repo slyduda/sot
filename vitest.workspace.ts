@@ -1,1 +1,1 @@
-export default ["sot", "soter", "soteria", "soterion"];
+export default ["sot", "soter", "soteria", "soterion", "soteroetoe", "utils"];

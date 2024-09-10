@@ -5,6 +5,7 @@ import type {
   InstructionRecord,
   InstructionDict,
   TransitionResult,
+  PendingTransitionResult,
   TransitionOptions,
   StateMachineOptions,
 } from "./types";
@@ -17,6 +18,7 @@ export {
   InstructionRecord,
   InstructionDict,
   TransitionOptions,
+  PendingTransitionResult,
   TransitionResult,
   StateMachineOptions,
 };

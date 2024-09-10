@@ -1,3 +1,4 @@
+import { InstructionMap } from "./instructions";
 import { StateMachine } from "./machine";
 
 export type ErrorName =
@@ -140,6 +141,13 @@ export type StateMachineOptions<
     context: Context,
     self: StateMachine<any, State, string, Stateful, K>
   ) => void;
+  onVisualize?: (
+    selector: string,
+    current: State,
+    self: StateMachine<any, State, string, Stateful, K>
+  ) => void;
+  element?: SVGElement;
+  visualizer?: any;
 };
 
 export type StateMachineInternalOptions<
@@ -194,6 +202,14 @@ export type StateMachineInternalOptions<
     context: Context,
     self: StateMachine<any, State, string, Stateful, K>
   ) => void;
+  onVisualize?: (
+    selector: string,
+    current: State,
+    self: StateMachine<any, State, string, Stateful, K>
+  ) => void;
+  selector?: string;
+  element?: SVGElement;
+  visualizer?: any;
 };
 
 export type StateMachineConfig<
@@ -245,6 +261,11 @@ export type StateMachineConfig<
   ) => void;
   onReset: (
     context: Context,
+    self: StateMachine<any, State, string, Stateful, K>
+  ) => void;
+  onVisualize: (
+    selector: string,
+    current: State,
     self: StateMachine<any, State, string, Stateful, K>
   ) => void;
 };

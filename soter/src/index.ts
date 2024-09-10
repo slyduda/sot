@@ -1,10 +1,8 @@
-import {
-  InstructionMap,
+import { StateMachine, instructions, InstructionMap } from "@olympos/sot";
+import type {
+  StateMachineOptions,
   InstructionDict,
   StateList,
-  StateMachineOptions,
-  StateMachine,
-  instructions,
   InstructionRecord,
   TransitionOptions,
   TransitionResult,
@@ -71,6 +69,15 @@ function soter<
           return Reflect.get(wrapper, prop, receiver);
         }
         return Reflect.get(target, prop, receiver);
+      },
+      set(_, prop, value) {
+        if (prop in wrapper) {
+          // Allow direct property setting for props that exist on Machine only
+          const thetrap: any = wrapper;
+          thetrap[prop] = value;
+          return true;
+        }
+        return false;
       },
     }
   );

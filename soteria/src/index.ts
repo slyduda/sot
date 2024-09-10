@@ -1,11 +1,10 @@
-import { Ref } from "@vue/reactivity";
+import { Ref, RefSymbol } from "@vue/reactivity";
 import { watch, WatchStopHandle } from "@vue-reactivity/watch";
 import { deepUnref } from "./utils";
 import { normalizeArray } from "@sot/utils";
 
-import { StateMachine, instructions } from "@olympos/sot";
+import { StateMachine, instructions, InstructionMap } from "@olympos/sot";
 import type {
-  InstructionMap,
   InstructionDict,
   StateList,
   StateMachineOptions,
@@ -15,7 +14,7 @@ import type {
 } from "@olympos/sot";
 
 type ReactiveStateful<State> = {
-  state: Ref<State>;
+  state: Ref<State> | (any & {}); // TODO: Investigate why @vue/reactivity Ref does not align with vue-core
 };
 
 type DisposableWatcher = {
@@ -185,6 +184,15 @@ function soteria<
           return Reflect.get(wrapper, prop, receiver);
         }
         return Reflect.get(target, prop, receiver);
+      },
+      set(_, prop, value) {
+        if (prop in wrapper) {
+          // Allow direct property setting for props that exist on Machine only
+          const thetrap: any = wrapper;
+          thetrap[prop] = value;
+          return true;
+        }
+        return false;
       },
     }
   );

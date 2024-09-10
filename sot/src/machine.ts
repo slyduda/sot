@@ -69,6 +69,9 @@ export class StateMachine<
   private ___context: Context; // Maybe expose this as .value?
   private ___instructions: InstructionMap<State, Trigger, Context>;
   private ___config: StateMachineConfig<Context, State, Trigger, Stateful, K>;
+  private ___element: SVGElement | null;
+  private ___selector: string | null;
+  private ___visualizer: any | null;
 
   constructor(
     context: Context,
@@ -87,14 +90,21 @@ export class StateMachine<
       contextCopier = defaultContextCopier,
       getState,
       setState,
+      visualizer = null,
       onPrepare = noop,
       onBefore = noop,
       onAfter = noop,
       onException = noop,
       onReset = noop,
+      onVisualize = noop,
+      selector = null,
+      element = null,
       instructionScope = "global",
     } = options ?? {};
 
+    this.___selector = selector;
+    this.___element = element;
+    this.___visualizer = visualizer;
     this.history = [];
     this.___context = context;
     if (Array.isArray(instructions)) {
@@ -122,6 +132,7 @@ export class StateMachine<
       onBefore,
       onAfter,
       onException,
+      onVisualize,
       onReset,
     };
   }
@@ -162,6 +173,9 @@ export class StateMachine<
 
     if (verbose) console.info(`State changed to ${newState}`);
     if (onAfter) onAfter(newState, oldState, this.___context, this);
+
+    // Render a graph if visualization plugin was supplied
+    this.render();
   }
 
   private ___getCurrentContext(): Context {
@@ -776,5 +790,26 @@ export class StateMachine<
     const history = this.history.slice();
     this.history.length = 0;
     return history;
+  }
+
+  visualize(
+    selector: string,
+    onVisualize: (
+      selector: string,
+      current: State,
+      self: StateMachine<Context, State, string, Stateful, K>
+    ) => void
+  ) {
+    // this.___element = null;
+    this.___selector = selector;
+    this.___config.onVisualize = onVisualize;
+
+    this.render();
+  }
+
+  render() {
+    const { onVisualize } = this.___config;
+    if (!this.___selector) return;
+    onVisualize(this.___selector, this.___getState(), this);
   }
 }

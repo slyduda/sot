@@ -1,0 +1,28 @@
+{
+  "name": "soteroetoe",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@olympos/soter": "0.1.2",
+    "@olympos/soteria": "0.1.0",
+    "@olympos/soterion": "0.0.15",
+    "@pinia/nuxt": "^0.5.4",
+    "@vueuse/nuxt": "^11.0.3",
+    "nuxt": "^3.13.0",
+    "uuid": "^10.0.0",
+    "vue": "latest",
+    "vue-router": "latest"
+  },
+  "devDependencies": {
+    "@types/uuid": "^10.0.0",
+    "vitest": "^2.0.5"
+  }
+}

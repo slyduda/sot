@@ -21,7 +21,8 @@
     "test": "vitest",
     "start": "tsx ./src/index.ts",
     "bench": "vitest bench",
-    "build": "vite build"
+    "build": "vite build",
+    "build:watch": "vite build --watch"
   },
   "keywords": [
     "state",
